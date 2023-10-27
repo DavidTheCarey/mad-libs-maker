@@ -1,0 +1,17 @@
+.template {
+    display: flex;
+    line-height: 2;
+}
+
+.lib {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+    border-bottom: solid black;
+    padding: 0 10px 0 10px;
+}
+
+.phrase {
+    margin: 0 3px 0 3px;
+    color: blue;
+}

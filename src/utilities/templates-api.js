@@ -9,6 +9,10 @@ export function createTemplate(templateData) {
   return sendRequest(`${BASE_URL}/new`, 'POST', templateData);
 }
 
+export function editTemplate(templateData, templateId) {
+  return sendRequest(`${BASE_URL}/edit/${templateId}`, 'PUT', templateData);
+}
+
 export function deleteTemplate(templateId) {
-  return sendRequest(`${BASE_URL}/${templateId}`, 'DELETE', templateId);
+  return sendRequest(`${BASE_URL}/${templateId}`, 'DELETE');
 }

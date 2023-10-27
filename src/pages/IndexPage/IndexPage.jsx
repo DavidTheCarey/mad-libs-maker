@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 import * as templatesAPI from "../../utilities/templates-api";
 import TemplateGenerator from "../../components/TemplateGenerator/TemplateGenerator";
 
-export default function IndexPage({templates, setTemplates}) {
+export default function IndexPage({user, templates, setTemplates}) {
 
     useEffect(function(){
         async function getTemplates(){
@@ -13,22 +14,28 @@ export default function IndexPage({templates, setTemplates}) {
     }, []) 
 
     async function handleDelete(template){
-        const temps = await templatesAPI.deleteTemplate(template._id);
+        const templateId = template.template._id;
+        const temps = await templatesAPI.deleteTemplate(templateId);
         setTemplates(temps);
     }
 
 
     const allTemplates = templates.map(function(template, idx){
-        // return <TemplateGenerator body={template} key={idx} />
         return <div>
-            <div>{template.phrases[0]}</div>
+            <TemplateGenerator template={template} key={idx} />
+            {user._id === template.user && <>
             <button onClick={() => {handleDelete({template})}}>X</button>
-            </div>// temporary code
+            <Link to="/madlibs/edit" state={template}>Edit</Link>
+            </>
+            }
+            </div>
     })
 
     
 
     return(
+        <>
         <div>{allTemplates}</div>
+        </>
     );
 }

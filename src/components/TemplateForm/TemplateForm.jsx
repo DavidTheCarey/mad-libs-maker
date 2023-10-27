@@ -88,7 +88,7 @@ export default function TemplateForm ({ user, templates,setTemplates }){
             <button>Create Template</button>
           </form>
         </div>
-        <TemplateGenerator body={templateData.body}/>
+        <TemplateGenerator template={templateData}/>
         {/* <p className="error-message">&nbsp;{error}</p> */}
       </div>
       );

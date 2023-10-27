@@ -7,6 +7,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import IndexPage from "../IndexPage/IndexPage";
 import CreatePage from "../CreatePage/CreatePage";
 import UserPage from "../UserPage/UserPage";
+import EditPage from '../EditPage/EditPage';
 
 
 
@@ -23,8 +24,9 @@ export default function App() {
             <Routes>
               {/* Route components in here */}
               <Route path="/madlibs/new" element={<CreatePage user={user} templates={templates} setTemplates={setTemplates}/>} />
-              <Route path="/madlibs" element={<IndexPage templates={templates} setTemplates={setTemplates}/>} /> 
-              <Route path={`/madlibs/${user._id}`} element={<UserPage  user={user}/>} /> 
+              <Route path="/madlibs" element={<IndexPage user={user} templates={templates} setTemplates={setTemplates}/>} /> 
+              <Route path={`/madlibs/${user._id}`} element={<UserPage  user={user} templates={templates} setTemplates={setTemplates}/>} />
+              <Route path={`/madlibs/edit`} element={<EditPage templates={templates} setTemplates={setTemplates}/>} /> 
             </Routes>
           </>
           :
