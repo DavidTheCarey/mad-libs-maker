@@ -7,8 +7,6 @@ export default function TemplateForm ({ user, templates,setTemplates }){
     const [phrase, setPhrase] = useState("");
     const [lib, setLib] = useState("");
     const [templateData, setTemplateData] = useState({
-        phrases: [],
-        libs: [],
         body: []
       });
 
@@ -26,8 +24,7 @@ export default function TemplateForm ({ user, templates,setTemplates }){
       function handleNewInput(evt) {
         const newArray = templateData[evt.target.name];
         const newBody = templateData.body;
-        newArray.push(evt.target.name === "phrases" ? phrase : lib)
-        newBody.push(evt.target.name === "phrases" ? phrase : lib)
+        newBody.push(evt.target.name === "phrases" ? {text: phrase, type: "phrase"} : {text: lib, type: "lib"})
         setTemplateData({...templateData, [evt.target.name]: newArray, body: newBody});
         setButtonPressed(0);
       }

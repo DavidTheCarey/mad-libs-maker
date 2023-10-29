@@ -22,9 +22,7 @@ async function create (req,res){
 
 async function edit(req,res){
     const newInfo = req.body;
-    console.log(newInfo);
     const template = await Template.findById(req.params.id);
-    console.log(template);
     await template.updateOne(newInfo);
     template.save();
     res.json(template);

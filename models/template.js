@@ -17,7 +17,7 @@ const templateSchema = new Schema({
         required: true
     },
     body: {
-        type: [String],
+        type: [Object],
         required: true
     },
     likes: {

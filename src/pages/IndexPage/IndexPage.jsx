@@ -20,9 +20,10 @@ export default function IndexPage({user, templates, setTemplates}) {
     }
 
 
-    const allTemplates = templates.map(function(template, idx){
-        return <div>
+    const allTemplates = templates?.map(function(template, idx){
+        return <div key={idx}>
             <TemplateGenerator template={template} key={idx} />
+            <Link to="/madlibs/entry/new" state={template}>Create a Madlib with this template</Link>
             {user._id === template.user && <>
             <button onClick={() => {handleDelete({template})}}>X</button>
             <Link to="/madlibs/edit" state={template}>Edit</Link>
