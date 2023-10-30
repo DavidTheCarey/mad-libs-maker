@@ -1,11 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;600&display=swap');
+
 .App {
   text-align: center;
   background-color: white;
+  font-family: 'Playpen Sans', cursive;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.homeIcon > img {
+  position: absolute;
+  top: 2px;
+  left: 15px;
+  width: 50px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -104,7 +114,6 @@
 }
 
 .lib {
-  font-style: italic;
   height: 30px;
   border-bottom: solid black;
   margin: 0 3px 0 3px;
@@ -120,6 +129,14 @@
 
 nav {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  margin-left: 75px;
+  font-family: 'Playpen Sans', cursive;
+}
+
+nav > * {
+  font-size: 22px;
 }
 
 
@@ -168,4 +185,62 @@ nav {
 
 .pageTitle {
   font-size: 54px;
+}
+
+.logSwitch {
+  font-size: 18px;
+  width: 40%;
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
+  border: solid darkblue 0.3rem;
+  border-radius: 30px;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+  font-family: 'Playpen Sans', cursive; 
+}
+
+.auth{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.auth > input {
+  outline: none;
+  border: none;
+  border-bottom: solid black 0.1rem;
+  background-color: transparent;
+  width: 40%;
+  font-size: 32px;
+  text-align: center;
+  font-family: 'Playpen Sans', cursive; 
+}
+
+.auth > button {
+  font-size: 36px;
+  padding: 0 20px 0 20px;
+  border: solid darkgreen 0.3rem;
+  border-radius: 30px ;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-top: 30px;
+  font-family: 'Playpen Sans', cursive; 
+}
+
+.auth > .signLink {
+  text-decoration: none;
+  font-size: 36px;
+  padding: 0 20px 0 20px;
+  border: solid darkgreen 0.3rem;
+  border-radius: 30px ;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-top: 30px;
+  font-family: 'Playpen Sans', cursive; 
 }

@@ -38,7 +38,9 @@ export default function TemplateEditForm({template, templates, setTemplates}){
 
     return (
         <form  autoComplete="off" onSubmit={handleSubmit}>
-        <div className="template">{ changes.map(function(item, idx){
+        <div className="template">
+            <h3>{template.title ? template.title : "Untitled"}</h3>
+            { changes.map(function(item, idx){
             
             if (libList.find(function(lib){return item.type === "lib"})){
             return <select name="libsSelect" onChange={handleChange} placeholder={item.text} value={item.text} key={idx} idx={idx}>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as entriesAPI from "../../utilities/entries-api"
 
-export default function EntryForm({template, entries, setEntries}){
+export default function EntryForm({template, entries, setEntries, user=null}){
 
     const [current, setCurrent] = useState("");
     const [entry, setEntry] = useState({
@@ -31,12 +31,18 @@ export default function EntryForm({template, entries, setEntries}){
 
     async function handleSubmit(evt){
         evt.preventDefault();
-        try {
-        const madlib = await entriesAPI.createEntry(entry);
-        setEntries([...entries, madlib])
-        navigate(`/madlibs/${madlib.user}`)
-        } catch {
-            //
+        if (user){
+            try {
+            const madlib = await entriesAPI.createEntry(entry);
+            setEntries([...entries, madlib])
+            navigate(`/madlibs/${madlib.user}`)
+            } catch {
+                //
+            }
+        } else {
+            entry.user = null;
+            setEntries([...entries, entry])
+            navigate(`/madlibs/guest`);
         }
     }
 

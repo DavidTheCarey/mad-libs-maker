@@ -3,7 +3,7 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 import { useState } from 'react';
 
 
-export default function AuthPage({setUser}) {
+export default function AuthPage({setUser, navigate}) {
     const [logIn, setLogIn] = useState(false);
 
     function handleClick(){
@@ -12,9 +12,9 @@ export default function AuthPage({setUser}) {
 
   return (
     <main>
-      <h1>AuthPage</h1>
+      <h1>{!logIn ? "Sign Up" : "Log In"}</h1>
       <div className="logSwitch" onClick={handleClick}>{!logIn ? "Already have an account? Click here" : "Don't have an account? Click here"}</div>
-      {!logIn ? <SignUpForm setUser={setUser} /> : <LoginForm setUser={setUser} />}
+      {!logIn ? <SignUpForm setUser={setUser} navigate={navigate} /> : <LoginForm setUser={setUser} />}
     </main>
   );
 }

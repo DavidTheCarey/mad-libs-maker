@@ -1,5 +1,5 @@
 import sendRequest from './send-request';
-const BASE_URL = 'https://mad-libs-maker.onrender.com/api/templates';
+const BASE_URL = '/api/templates';
 
 export function getAll() {
   return sendRequest(BASE_URL);

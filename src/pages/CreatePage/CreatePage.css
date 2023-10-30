@@ -27,6 +27,7 @@ form {
     font-size: 24px;
     background-color: transparent;
     text-align: center;
+    font-family: 'Playpen Sans', cursive;
 }
 
 .submitInput {
@@ -86,6 +87,12 @@ form {
     border-bottom: solid black 0.1rem;   
     background-color: transparent;
     font-size: 24px;
+    font-family: 'Playpen Sans', cursive;
+    margin-top: 15px;
+}
+
+.inputContainer > select {
+    font-family: 'Playpen Sans', cursive;
 }
 
 .inputContainer > button {

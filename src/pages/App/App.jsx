@@ -38,24 +38,20 @@ export default function App() {
 
   return (
         <main className="App">
-          { user ?
-              <>
                 <NavBar  user={user} setUser={setUser}/>
                 <div className="contents">
                 <Routes>
                   {/* Route components in here */}
                   <Route path="/madlibs/new" element={<CreatePage user={user} templates={templates} setTemplates={setTemplates}/>} />
                   <Route path="/madlibs" element={<IndexPage user={user} templates={templates} setTemplates={setTemplates}/>} /> 
-                  <Route path={`/madlibs/${user._id}`} element={<UserPage  user={user} templates={templates} setTemplates={setTemplates} entries={entries} setEntries={setEntries}/>} />
+                  <Route path={`/madlibs/${user ? user._id : "guest"}`} element={<UserPage  user={user} templates={templates} setTemplates={setTemplates} entries={entries} setEntries={setEntries}/>} />
                   <Route path={`/madlibs/edit`} element={<EditPage templates={templates} setTemplates={setTemplates} />} /> 
-                  <Route path={`/madlibs/entry/new`} element={<EntryPage entries={entries} setEntries={setEntries} />} />
+                  <Route path={`/madlibs/entry/new`} element={<EntryPage entries={entries} setEntries={setEntries} user={user} />} />
                   <Route path={`/madlibs/home`} element={<HomePage />} />
+                  <Route path={`/madlibs/auth`} element={<AuthPage setUser={setUser} navigate={navigate}/>} />
+                  <Route path="/madlibs/guest" element={<UserPage />} />
                 </Routes>
                 </div>
-              </>
-              :
-              <AuthPage setUser={setUser}/>
-          }
         </main>
   );
 }
