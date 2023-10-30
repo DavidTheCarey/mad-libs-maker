@@ -2,12 +2,16 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const cors = require('cors')
 // Always require and configure near the top
 require('dotenv').config();
 // Connect to the database
 require('./config/database');
 
+
 const app = express();
+const CLIENTDEVPORT = 5173
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${CLIENTDEVPORT}` }))
 
 app.use(logger('dev'));
 app.use(express.json());
