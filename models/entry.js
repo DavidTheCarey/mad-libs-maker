@@ -12,7 +12,7 @@ const entrySchema = new Schema({
         required: true
     },
     template: {
-        type: Schema.Types.ObjectId,
+        type: Object,
         ref: 'Template',
         required: true
     }

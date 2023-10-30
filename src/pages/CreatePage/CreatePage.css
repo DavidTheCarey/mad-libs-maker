@@ -1,17 +1,123 @@
-.template {
+form {
     display: flex;
-    line-height: 2;
+    flex-wrap: wrap;
+    margin-top: -30px;  
 }
 
-.lib {
-    color: red;
-    font-size: 14px;
-    font-style: italic;
-    border-bottom: solid black;
+.addContainer > button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: green;
+}
+
+.titleContainer {
+    width: 100%;
+    font-size: 24px;
+}
+
+.titleContainer > input {
+    outline: none;
+    border: none;
+    border-bottom: solid black 0.1rem;
+    font-size: 24px;
+    background-color: transparent;
+    text-align: center;
+}
+
+.submitInput {
+    color:red;
+}
+
+.addContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.addContainer > button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: green;
+    margin: 0px 5px 0 5px;
+}
+
+.addContainer > .textButton {
+    color: white;
+    font-size: 24px;
     padding: 0 10px 0 10px;
+    border: solid darkgreen 0.3rem;
+    border-radius: 30px ;
+    background-color: green;
 }
 
-.phrase {
-    margin: 0 3px 0 3px;
-    color: blue;
+.addContainer > .libButton {
+    color: white;
+    font-size: 24px;
+    padding: 0 10px 0 10px;
+    border: solid rgb(87, 0, 87) 0.3rem;
+    border-radius: 30px ;
+    background-color: purple;
 }
+
+.inputContainer {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+.inputContainer > input {
+    width: 60%;
+    height: 20px;
+    outline: none;
+    border: none;
+    border-bottom: solid black 0.1rem;   
+    background-color: transparent;
+    font-size: 24px;
+}
+
+.inputContainer > button {
+    background-color: green;
+	color: inherit;
+	border: solid darkgreen 0.3rem;
+    border-radius: 10px ;
+	padding: 0, 10px 0 10px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: white;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.createTemplate {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.createTemplate > button {
+    background-color: red;
+	color: inherit;
+	border: solid darkred 0.3rem;
+    border-radius: 10px ;
+	padding: 0, 10px 0 10px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: white;
+    font-size: 36px;
+}
+

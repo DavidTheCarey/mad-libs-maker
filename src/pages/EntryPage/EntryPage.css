@@ -1,0 +1,7 @@
+.lib > input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    height: 20px;
+}

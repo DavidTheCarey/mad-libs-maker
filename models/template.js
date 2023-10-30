@@ -8,6 +8,9 @@ const templateSchema = new Schema({
         ref: 'User',
         required: true
     },
+    title:{
+        type: String
+    },
     phrases: {
         type: [String],
         required: true

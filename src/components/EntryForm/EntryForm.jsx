@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as entriesAPI from "../../utilities/entries-api"
 
 export default function EntryForm({template, entries, setEntries}){
@@ -6,8 +7,10 @@ export default function EntryForm({template, entries, setEntries}){
     const [current, setCurrent] = useState("");
     const [entry, setEntry] = useState({
         answers: template.body,
-        template: template._id
+        template: template
     });
+
+    const navigate = useNavigate();
 
     const libList = ["noun", "adjective", "verb",
     "adverb", "exclamation", "pronoun", "plural noun",
@@ -30,9 +33,8 @@ export default function EntryForm({template, entries, setEntries}){
         evt.preventDefault();
         try {
         const madlib = await entriesAPI.createEntry(entry);
-        console.log(madlib);
-        setEntries({...entries, madlib})
-        console.log(entries);
+        setEntries([...entries, madlib])
+        navigate(`/madlibs/${madlib.user}`)
         } catch {
             //
         }
@@ -40,14 +42,18 @@ export default function EntryForm({template, entries, setEntries}){
 
     return(
        <form onSubmit={handleSubmit}> 
-            <div className="template">{ template ? template.body.map(function(item, idx){
+            <div className="template">
+            <h3>{template.title ? template.title : "Untitled"}</h3>
+                { template ? template.body.map(function(item, idx){
                 if (libList.find(function(lib){return item.type === "lib"})){
                 return <div className="lib" key={idx} idx={idx} > <input placeholder={item.text} idx={idx} onChange={handleChange} /> </div>
                 } else {
                 return <div className="phrase" key={idx} idx={idx} > {item.text} </div>
                 }
-            }) : ""}</div> 
-            <button>Submit</button>
+                }) : ""}</div> 
+            <div className="createTemplate">
+                <button>Create Madlib</button>
+            </div>
             
         </form>
     )

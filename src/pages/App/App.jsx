@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as templatesAPI from "../../utilities/templates-api"
 import * as entriesAPI from "../../utilities/entries-api"
@@ -21,6 +21,8 @@ export default function App() {
   const [templates, setTemplates] = useState([]);
   const [entries, setEntries] = useState([])
 
+  const navigate = useNavigate();
+
   useEffect(function(){
     async function getTemplates(){
         const temps = await templatesAPI.getAll();
@@ -32,26 +34,28 @@ export default function App() {
     }
     getTemplates();
     getEntries();
-  }, []) 
+  }, []); 
 
   return (
-    <main className="App">
-      { user ?
-          <>
-            <NavBar  user={user} setUser={setUser}/>
-            <Routes>
-              {/* Route components in here */}
-              <Route path="/madlibs/new" element={<CreatePage user={user} templates={templates} setTemplates={setTemplates}/>} />
-              <Route path="/madlibs" element={<IndexPage user={user} templates={templates} setTemplates={setTemplates}/>} /> 
-              <Route path={`/madlibs/${user._id}`} element={<UserPage  user={user} templates={templates} setTemplates={setTemplates} entries={entries} setEntries={setEntries}/>} />
-              <Route path={`/madlibs/edit`} element={<EditPage templates={templates} setTemplates={setTemplates}/>} /> 
-              <Route path={`/madlibs/entry/new`} element={<EntryPage entries={entries} setEntries={setEntries} />} /> 
-            </Routes>
-            {/* <HomePage /> */}
-          </>
-          :
-          <AuthPage setUser={setUser}/>
-      }
-    </main>
+        <main className="App">
+          { user ?
+              <>
+                <NavBar  user={user} setUser={setUser}/>
+                <div className="contents">
+                <Routes>
+                  {/* Route components in here */}
+                  <Route path="/madlibs/new" element={<CreatePage user={user} templates={templates} setTemplates={setTemplates}/>} />
+                  <Route path="/madlibs" element={<IndexPage user={user} templates={templates} setTemplates={setTemplates}/>} /> 
+                  <Route path={`/madlibs/${user._id}`} element={<UserPage  user={user} templates={templates} setTemplates={setTemplates} entries={entries} setEntries={setEntries}/>} />
+                  <Route path={`/madlibs/edit`} element={<EditPage templates={templates} setTemplates={setTemplates} />} /> 
+                  <Route path={`/madlibs/entry/new`} element={<EntryPage entries={entries} setEntries={setEntries} />} />
+                  <Route path={`/madlibs/home`} element={<HomePage />} />
+                </Routes>
+                </div>
+              </>
+              :
+              <AuthPage setUser={setUser}/>
+          }
+        </main>
   );
 }

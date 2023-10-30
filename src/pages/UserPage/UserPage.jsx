@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as templatesAPI from "../../utilities/templates-api"
 import * as entriesAPI from "../../utilities/entries-api"
 import TemplateGenerator from "../../components/TemplateGenerator/TemplateGenerator";
@@ -18,15 +19,12 @@ export default function UserPage({ user, templates, setTemplates, entries, setEn
         getEntries();
     }, []) 
 
-    async function handleEntryDelete({ entry }){
-        const entryId = entry._id;
-        const changedEntries = await entriesAPI.deleteEntry(entryId);
-        setEntries(changedEntries);
-    }
 
-    const userTemplates = templates.map(function(template, idx){
+    const userTemplates = templates?.map(function(template, idx){
         if (template.user === user._id){
-        return <TemplateGenerator template={template} key={idx} />
+        return <>
+        <TemplateGenerator user ={user}template={template} key={idx} templates={templates} setTemplates={setTemplates} />
+        </>
         }
     })
 
@@ -37,18 +35,17 @@ export default function UserPage({ user, templates, setTemplates, entries, setEn
               newArr.push(entry.answers[i].text);
             }
             return <div key={idx}>
-            <EntryGenerator entry={newArr} key={idx}/>
-            <button onClick={() => {handleEntryDelete({entry})}}>X</button>
+                <EntryGenerator title={entry.template.title}entry={newArr} id={entry._id} key={idx} entries={entries} setEntries={setEntries}/>
             </div>
         }
     })
 
     return(
         <>
-        <h1>{user.name}'s Page </h1>
-        <h2> {user.name}'s Templates </h2>
+        <h1 className="pageTitle">{user.name}'s Page </h1>
+        <h1> {user.name}'s Templates </h1>
         <div>{  userTemplates }</div>
-        <h2>{user.name}'s Madlibs </h2>
+        <h1>{user.name}'s Madlibs </h1>
         <div>{userEntries}</div>
         </>
     );

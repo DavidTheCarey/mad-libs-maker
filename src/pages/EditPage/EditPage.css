@@ -1,17 +1,28 @@
 .template {
-    display: flex;
-    line-height: 2;
+    align-content: center;
+    justify-content: center;
 }
 
-.lib {
-    color: red;
-    font-size: 14px;
-    font-style: italic;
-    border-bottom: solid black;
-    padding: 0 10px 0 10px;
+.template > input {
+    height: 30px;
+    width: 30%;   
+    padding: 0;
+    outline: none;
+    border: none;
+    border-bottom: solid black 0.1rem;
+    background-color: transparent;
+    margin-right: 10px;
+    text-align: center;
 }
 
-.phrase {
-    margin: 0 3px 0 3px;
-    color: blue;
+.template > select {
+    height: 20px;
+    width: 15%;
+    margin-top: 10px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    border-bottom: solid black 0.1rem;
+    background-color: transparent;
+    text-align: center;
 }

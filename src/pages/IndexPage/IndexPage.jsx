@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as templatesAPI from "../../utilities/templates-api";
 import TemplateGenerator from "../../components/TemplateGenerator/TemplateGenerator";
 
 export default function IndexPage({user, templates, setTemplates}) {
+
+    const navigate = useNavigate();
 
     useEffect(function(){
         async function getTemplates(){
@@ -11,24 +13,19 @@ export default function IndexPage({user, templates, setTemplates}) {
             setTemplates(temps);
         }
         getTemplates();
-    }, []) 
+    },[]) 
 
     async function handleDelete(template){
         const templateId = template.template._id;
-        const temps = await templatesAPI.deleteTemplate(templateId);
-        setTemplates(temps);
+        const deletedTemplate = await templatesAPI.deleteTemplate(templateId);
+        const newArray = templates.filter(template => deletedTemplate._id !== template._id)
+        setTemplates(newArray);
     }
 
 
     const allTemplates = templates?.map(function(template, idx){
         return <div key={idx}>
-            <TemplateGenerator template={template} key={idx} />
-            <Link to="/madlibs/entry/new" state={template}>Create a Madlib with this template</Link>
-            {user._id === template.user && <>
-            <button onClick={() => {handleDelete({template})}}>X</button>
-            <Link to="/madlibs/edit" state={template}>Edit</Link>
-            </>
-            }
+            <TemplateGenerator user={template.user}template={template} key={idx} templates={templates} setTemplates={setTemplates} />
             </div>
     })
 
@@ -36,6 +33,7 @@ export default function IndexPage({user, templates, setTemplates}) {
 
     return(
         <>
+        <h1 className="pageTitle">Templates</h1>
         <div>{allTemplates}</div>
         </>
     );

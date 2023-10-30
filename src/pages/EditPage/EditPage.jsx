@@ -6,6 +6,9 @@ export default function EditPage({templates, setTemplates}) {
     let { state } = useLocation();
 
     return(
+        <>
+        <h1 className="pageTitle">Edit a Template</h1>
         <TemplateEditForm template={state} templates={templates} setTemplates={setTemplates}/>
+        </>
     );
 }

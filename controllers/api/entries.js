@@ -13,7 +13,6 @@ async function index (req,res){
 
 async function create (req,res){
     const madlib = req.body;
-    console.log(madlib);
     madlib.user = req.user;
     const newMadLib = new Entry(madlib);
     newMadLib.save();
@@ -24,7 +23,7 @@ async function deleteEntry (req,res){
     try{
         const specEntry = await Entry.findById(req.params.id);
         await specEntry.deleteOne();
-        res.status(200)
+        res.status(200).json(specEntry)
         } catch (error) {
             res.status(400).json({ error: 'something went wrong' })
         }

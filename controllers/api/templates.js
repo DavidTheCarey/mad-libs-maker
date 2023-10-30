@@ -33,7 +33,7 @@ async function deleteTemplate (req,res) {
     try{
     const specTemplate = await Template.findById(req.params.id);
     await specTemplate.deleteOne();
-    res.status(200)
+    res.status(200).json(specTemplate);
     } catch (error) {
         res.status(400).json({ error: 'something went wrong' })
     }

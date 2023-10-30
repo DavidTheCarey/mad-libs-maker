@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: white;
 }
 
 .App-logo {
@@ -35,4 +36,136 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.templateContainer {
+  margin-bottom: 30px;
+}
+
+.template {
+  margin-bottom: 30px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 280px;
+  border: solid black;
+  background-color: rgb(255, 255, 114);
+  display: inline-flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content:center;
+  align-content: flex-start;
+  font-size: 24px;
+}
+
+.template > h3 {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonContainer > * {
+  margin: 0 10px 0 10px;
+}
+
+.createLink {
+  font-size: 24px;
+  padding: 0 20px 0 20px;
+  border: solid darkgreen 0.3rem;
+  border-radius: 30px ;
+  background-color: rgb(0, 165, 0);
+  color: white;
+  text-decoration: none;
+}
+
+
+.editLink{
+  font-size: 24px;
+  padding: 0 20px 0 20px;
+  border: solid darkblue 0.3rem;
+  border-radius: 30px ;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+.deleteButton {
+  font-size: 24px;
+  padding: 0 20px 0 20px;
+  border: solid darkred 0.3rem;
+  border-radius: 30px ;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.lib {
+  font-style: italic;
+  height: 30px;
+  border-bottom: solid black;
+  margin: 0 3px 0 3px;
+  padding: 0 10px 0 10px;
+}
+
+.phrase {
+  height: 30px;
+  margin: 0 3px 0 3px;
+  padding-bottom: 20px;
+  
+}
+
+nav {
+  margin-bottom: 30px;
+}
+
+
+.contents {
+  position: absolute;
+  left: 15%;
+  width: 80%;
+}
+
+.entry {
+  margin-bottom: 30px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 280px;
+  border: solid black;
+  background-color: rgb(255, 255, 114);
+  display: inline-flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-content: flex-start;
+  font-size: 24px;
+}
+
+.entry > h3 {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.entry > div {
+  margin: 0 3px 0 3px;
+}
+
+.entryButton {
+  font-size: 24px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  border: solid darkred 0.3rem;
+  border-radius: 30px ;
+  background-color: red;
+  width: 15%;
+  color: white;
+  cursor: pointer;
+}
+
+.pageTitle {
+  font-size: 54px;
 }

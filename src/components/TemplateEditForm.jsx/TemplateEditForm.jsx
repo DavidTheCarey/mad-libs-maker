@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as templatesAPI from "../../utilities/templates-api";
 
 export default function TemplateEditForm({template, templates, setTemplates}){
     const [changes, setChanges] = useState(template.body);
     const [current, setCurrent] = useState("");
+
+    const navigate = useNavigate();
 
     const libList = ["noun", "adjective", "verb",
     "adverb", "exclamation", "pronoun", "plural noun",
@@ -14,7 +17,7 @@ export default function TemplateEditForm({template, templates, setTemplates}){
     function handleChange(evt){
         const index = evt.target.getAttribute("idx")
         const newArray = changes;
-        newArray[index] = evt.target.value;
+        newArray[index].text = evt.target.value;
         setChanges(newArray);
         setCurrent(evt.target.value);
     }
@@ -24,7 +27,9 @@ export default function TemplateEditForm({template, templates, setTemplates}){
 
         try{
             const changedTemplate = await templatesAPI.editTemplate(template, template._id);
-            setTemplates({...templates, changedTemplate});
+            const updatedTemplateList = templates.map(template => changedTemplate._id === template._id ? changedTemplate : template);
+            setTemplates(updatedTemplateList)
+            navigate(`/madlibs/${template.user}`)
         } catch {
           console.log("Failed");
         }
@@ -35,8 +40,8 @@ export default function TemplateEditForm({template, templates, setTemplates}){
         <form  autoComplete="off" onSubmit={handleSubmit}>
         <div className="template">{ changes.map(function(item, idx){
             
-            if (libList.find(function(lib){return item === lib})){
-            return <select name="libsSelect" onChange={handleChange} placeholder={item} value={item} key={idx} idx={idx}>
+            if (libList.find(function(lib){return item.type === "lib"})){
+            return <select name="libsSelect" onChange={handleChange} placeholder={item.text} value={item.text} key={idx} idx={idx}>
                         <option value="noun">Noun</option>
                         <option value="adjective">Adjective</option>
                         <option value="verb">Verb</option>
@@ -55,11 +60,13 @@ export default function TemplateEditForm({template, templates, setTemplates}){
                         <option value="game">Game</option>
                     </select>
             } else {
-            return <input className="phrase"  onChange={handleChange} key={idx}  placeholder={item} value={item} idx={idx}/>
+            return <input className="phrase"  onChange={handleChange} key={idx}  placeholder={item.text} value={item.text} idx={idx}/>
         }
         }
         )}</div>
-        <button type="submit">Submit Changes</button>
+        <div className="createTemplate">
+            <button>Save Changes</button>
+        </div>
         </form>
     );
 }
