@@ -1,4 +1,4 @@
-# Yu-Gi-Oh Card Builder #
+# Madlibs Maker #
 
 ## Description ##
 This FE/BE application allows you to create Madlibs templates that anyone can use to create their own Madlibs!

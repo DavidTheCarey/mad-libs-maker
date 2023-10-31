@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import * as templatesAPI from "../../utilities/templates-api"
 import * as entriesAPI from "../../utilities/entries-api"
 import TemplateGenerator from "../../components/TemplateGenerator/TemplateGenerator";

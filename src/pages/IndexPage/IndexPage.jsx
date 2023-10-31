@@ -1,11 +1,9 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
 import * as templatesAPI from "../../utilities/templates-api";
 import TemplateGenerator from "../../components/TemplateGenerator/TemplateGenerator";
 
 export default function IndexPage({user, templates, setTemplates}) {
 
-    const navigate = useNavigate();
 
     useEffect(function(){
         async function getTemplates(){
@@ -14,14 +12,6 @@ export default function IndexPage({user, templates, setTemplates}) {
         }
         getTemplates();
     },[]) 
-
-    async function handleDelete(template){
-        const templateId = template.template._id;
-        const deletedTemplate = await templatesAPI.deleteTemplate(templateId);
-        const newArray = templates.filter(template => deletedTemplate._id !== template._id)
-        setTemplates(newArray);
-    }
-
 
     const allTemplates = templates?.map(function(template, idx){
         return <div key={idx}>
